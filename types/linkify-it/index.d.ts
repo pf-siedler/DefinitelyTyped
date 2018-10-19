@@ -19,7 +19,7 @@ declare namespace LinkifyIt {
 
     interface FullRule {
         validate: string | RegExp | Validate;
-        normalize?(match: string): string;
+        normalize?(match: Match): void;
     }
 
     type Rule = string | FullRule;
@@ -44,9 +44,9 @@ declare namespace LinkifyIt {
     }
 
     interface LinkifyIt {
-        add(schema: string, rule: Rule): LinkifyIt;
-        match(text: string): Match[];
-        normalize(raw: string): string;
+        add(schema: string, rule: Rule | null): LinkifyIt;
+        match(text: string): Match[] | null;
+        normalize(raw: Match): void;
         pretest(text: string): boolean;
         set(options: Options): LinkifyIt;
         test(text: string): boolean;
